@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 03</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="flexbox">
+        <article>
+            <header>
+                <h1>Carreira de tecnologia</h1>
+            </header>
+            <section>
+                <label>Qual área você quer seguir?</label><br>
+                <input type="radio" name="area" onclick="Front()" id="front"><label>Front-End</label>
+                <input type="radio" name="area" onclick="Back()" id="back"><label>Back-End</label><br>
+            </section>
+            <section id="section02">
+                <label id="questao02"></label><br>
+                <input type="radio" name="linguagem" onclick="Linguagem()" id="l01"><label id="linguagem01"></label>
+                <input type="radio" name="linguagem" onclick="Linguagem()" id="l02"><label id="linguagem02"></label><br>
+            </section>
+            <section id="section03">
+                <label>Você deseja:</label><br>
+                <input type="radio" name="foco" onclick="Foco()" id="especialista"><label>Seguir se especializando na área escolhida</label><br>
+                <input type="radio" name="foco" onclick="Foco()" id="fullstack"><label>Seguir se desenvolvendo para se tornar Fullstack</label><br>
+            </section>
+            <section id="section04">
+                <input type="text" placeholder="Insira uma linguagem que deseja aprender" id="aprender" autocomplete="off" required>
+                <input type="button" value="Enviar" onclick="Adicionar()"><br>
+                <small></small>
+            </section>
+        </article>
+        <article id="resultado">
+            <p>Área que quer seguir:</p>
+            <p id="resArea"></p><br>
+            <p>Linguagem escolhida:</p>
+            <p id="resLinguagem"></p><br>
+            <p>Foco:</p>
+            <p id="resFoco"></p><br>
+            <p>Linguagens de interesse:</p>
+            <ul id="linguagensParaAprender">
+            </ul>
+        </article>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
