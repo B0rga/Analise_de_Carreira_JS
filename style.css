@@ -14,7 +14,11 @@ body{
 }
 
 article{
-    margin:40px;
+    margin: 20px;
+}
+
+header{
+    font-size: 24pt;
 }
 
 #resultado{
@@ -23,7 +27,7 @@ article{
     padding: 40px;
     font-size: 14pt;
     visibility: hidden;
-    height: 600px;
+    min-height: 420px;
 }
 
 #resultado p{
@@ -35,15 +39,10 @@ ul li{
     margin-top: 4px;
 }
 
-header{
-    font-size: 24pt;
-    margin-bottom: 30px;
-}
-
 section{
     font-size: 14pt;
     width: 600px;
-    margin: 50px 0px 50px 0px;
+    margin: 30px 0px 30px 0px;
 }
 
 #section02, #section03, #section04{
@@ -51,8 +50,7 @@ section{
 }
 
 input[type=radio]{
-    margin-top: 14px;
-    margin-right: 4px;
+    margin: 14px 4px 0px 0px;
     cursor: pointer;
 }
 

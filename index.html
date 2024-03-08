@@ -14,34 +14,34 @@
             </header>
             <section>
                 <label>Qual área você quer seguir?</label><br>
-                <input type="radio" name="area" onclick="Front()" id="front"><label>Front-End</label>
-                <input type="radio" name="area" onclick="Back()" id="back"><label>Back-End</label><br>
+                <input type="radio" name="area" onclick="carreira.SelecionaArea()"><label id="area01">Front-End</label>
+                <input type="radio" name="area" onclick="carreira.SelecionaArea()"><label id="area02">Back-End</label><br>
             </section>
             <section id="section02">
                 <label id="questao02"></label><br>
-                <input type="radio" name="linguagem" onclick="Linguagem()" id="l01"><label id="linguagem01"></label>
-                <input type="radio" name="linguagem" onclick="Linguagem()" id="l02"><label id="linguagem02"></label><br>
+                <input type="radio" name="linguagem" onclick="carreira.SelecionaLinguagem()"><label id="lng01"></label>
+                <input type="radio" name="linguagem" onclick="carreira.SelecionaLinguagem()"><label id="lng02"></label><br>
             </section>
             <section id="section03">
                 <label>Você deseja:</label><br>
-                <input type="radio" name="foco" onclick="Foco()" id="especialista"><label>Seguir se especializando na área escolhida</label><br>
-                <input type="radio" name="foco" onclick="Foco()" id="fullstack"><label>Seguir se desenvolvendo para se tornar Fullstack</label><br>
+                <input type="radio" name="foco" onclick="carreira.SelecionaFoco()"><label id="foco01">Seguir se especializando na área escolhida</label><br>
+                <input type="radio" name="foco" onclick="carreira.SelecionaFoco()"><label id="foco02">Seguir se desenvolvendo para se tornar Fullstack</label><br>
             </section>
             <section id="section04">
                 <input type="text" placeholder="Insira uma linguagem que deseja aprender" id="aprender" autocomplete="off" required>
-                <input type="button" value="Enviar" onclick="Adicionar()"><br>
+                <input type="button" value="Enviar" onclick="carreira.EnviaDados()"><br>
                 <small></small>
             </section>
         </article>
         <article id="resultado">
             <p>Área que quer seguir:</p>
-            <p id="resArea"></p><br>
+            <p id="resArea" style="color:gold"></p><br>
             <p>Linguagem escolhida:</p>
-            <p id="resLinguagem"></p><br>
+            <p id="resLinguagem" style="color:gold"></p><br>
             <p>Foco:</p>
-            <p id="resFoco"></p><br>
+            <p id="resFoco" style="color:gold"></p><br>
             <p>Linguagens de interesse:</p>
-            <ul id="linguagensParaAprender">
+            <ul>
             </ul>
         </article>
     </div>

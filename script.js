@@ -1,88 +1,138 @@
-let front = document.querySelector("#front");
-let back = document.querySelector("#back");
-let l01 = document.querySelector("#l01");
-let l02 = document.querySelector("#l02");
-let especialista = document.querySelector("#especialista");
-let fullstack = document.querySelector("#fullstack");
-let section02 = document.querySelector("#section02");
-let section03 = document.querySelector("#section03");
-let section04 = document.querySelector("#section04");
-let questao02 = document.querySelector("#questao02");
-let linguagem01 = document.querySelector("#linguagem01");
-let linguagem02 = document.querySelector("#linguagem02");
-let resultado = document.querySelector("#resultado");
-let aprender = document.querySelector("#aprender");
-let linguagensParaAprender = document.querySelector("#linguagensParaAprender");
-let error = document.querySelector("small");
+class Carreira{
+    constructor(){
+        this.area;
+        this.linguagem;
+        this.foco;
+        this.arrayLinguagens = [];
+    }
 
-function Front(){
-    section02.style.visibility = "visible";
-    questao02.innerText = "Qual linguagem front-end você escolheria?";
-    linguagem01.innerText = "React";  
-    linguagem02.innerText = "Vue";
-}
+    TerminaArea(){
+        document.querySelector("#section02").style.visibility="visible";
+    }
 
-function Back(){
-    section02.style.visibility = "visible";
-    questao02.innerText = "Qual linguagem back-end você escolheria?";        
-    linguagem01.innerText = "Java";
-    linguagem02.innerText = "C#";
-}
+    TerminaLinguagem(){
+        document.getElementsByName("area")[0].disabled=true;
+        document.getElementsByName("area")[1].disabled=true;
+        document.querySelector("#section03").style.visibility="visible";
+    }
 
-function Linguagem(){
-    front.disabled = true;
-    back.disabled = true;
-    section03.style.visibility = "visible";
-}
+    TerminaFoco(){
+        document.getElementsByName("linguagem")[0].disabled=true;
+        document.getElementsByName("linguagem")[1].disabled=true; 
+        document.querySelector("#section04").style.visibility="visible";
+    }
 
-function Foco(){
-    l01.disabled = true;
-    l02.disabled = true;
-    especialista.disabled = true;
-    fullstack.disabled = true;
-    section04.style.visibility = "visible";
-    resultado.style.visibility = "visible";
+    FinalizaRadios(){
+        document.getElementsByName("foco")[0].disabled=true;
+        document.getElementsByName("foco")[1].disabled=true;
+    }
 
-    if(front.checked==true){
-        document.querySelector("#resArea").innerText = "Front-end";
-        if(l01.checked==true){
-            document.querySelector("#resLinguagem").innerText = "React";
+    // método que seleciona a área que o usuário deseja seguir
+    SelecionaArea(){
+        if(document.getElementsByName("area")[0].checked==true){
+            this.area = document.querySelector("#area01").textContent;
+            document.querySelector("#questao02").innerHTML="Qual linguagem front-end você escolheria?";
+            document.querySelector("#lng01").innerHTML="React";
+            document.querySelector("#lng02").innerHTML="Vue";
         }
-        else if(l02.checked==true){
-            document.querySelector("#resLinguagem").innerText = "Vue";
+        else if(document.getElementsByName("area")[1].checked==true){
+            this.area = document.querySelector("#area02").textContent;
+            document.querySelector("#questao02").innerHTML="Qual linguagem back-end você escolheria?";
+            document.querySelector("#lng01").innerHTML="Java";
+            document.querySelector("#lng02").innerHTML="C#";
         }
+        this.TerminaArea();
     }
-    else if(back.checked==true){
-        document.querySelector("#resArea").innerText = "Back-end";
-        if(l01.checked==true){
-            document.querySelector("#resLinguagem").innerText = "Java";
+
+    // método que seleciona a linguagem que o usuário gostaria de aprender
+    SelecionaLinguagem(){
+        if(document.getElementsByName("linguagem")[0].checked==true){
+            this.linguagem = document.querySelector("#lng01").textContent;
         }
-        else if(l02.checked==true){
-            document.querySelector("#resLinguagem").innerText = "C#";
+        else if(document.getElementsByName("linguagem")[1].checked==true){
+            this.linguagem = document.querySelector("#lng02").textContent;
+        }
+        this.TerminaLinguagem();
+    }
+
+    // método que seleciona o foco da carreira do usuário
+    SelecionaFoco(){
+        if(document.getElementsByName("foco")[0].checked==true){
+            this.foco = document.querySelector("#foco01").textContent;
+        }
+        else if(document.getElementsByName("foco")[1].checked==true){
+            this.foco = document.querySelector("#foco02").textContent;
+        }
+        this.TerminaFoco();
+    }
+
+    LimpaCampos(){
+        document.querySelector("#aprender").value = "";
+    }
+
+    // método que verifica se o input está vazio
+    VerificaCampos(){
+        if(document.querySelector("#aprender").value == ""){
+            document.querySelector("small").innerHTML = "Preencha o campo!";
+            return false;
+        }
+        else{
+            document.querySelector("small").innerHTML = "";
+            return true;
         }
     }
 
-    if(especialista.checked==true){
-        document.querySelector("#resFoco").innerText = "Se especializar na área";
+    // método que adiciona as linguagens à array
+    AdicionaLinguagemNaArray(){
+        this.arrayLinguagens.push(document.querySelector("#aprender").value);
+    }  
+
+    // método que retorna o objeto com os dados inicializados
+    RecebeDados(){
+        let carreira = {};
+        carreira.area = this.area;
+        carreira.linguagem = this.linguagem;
+        carreira.foco = this.foco;
+        carreira.arrayLinguagens = this.arrayLinguagens;
+
+        return carreira;
+    }  
+
+    // método que exibe os dados do objeto na tela
+    ExibeDados(carreira){
+        document.querySelector("#resultado").style.visibility = "visible";
+        document.querySelector("#resArea").innerHTML = carreira.area;
+        document.querySelector("#resLinguagem").innerHTML = carreira.linguagem;
+        document.querySelector("#resFoco").innerHTML = carreira.foco;
+        document.querySelector("#resArea").innerHTML = carreira.area;
+        
+        let lista = document.querySelector("ul");
+
+        // zerando a lista antes do for para que ela receba sempre a array atualizada
+        lista.innerHTML = ""; 
+
+        // adicionando os elementos da array à lista do HTML
+        for(let i=0; i<this.arrayLinguagens.length; i++){            
+            let linguagem =document.createElement("li");
+            linguagem.innerHTML = this.arrayLinguagens[i];
+            linguagem.style.color = "gold";
+            lista.appendChild(linguagem);
+        }
     }
-    else if(fullstack.checked==true){
-        document.querySelector("#resFoco").innerText = "Se tornar fullstack";
+
+    // método principal
+    EnviaDados(){
+        if(this.VerificaCampos()){
+            this.FinalizaRadios();
+            this.AdicionaLinguagemNaArray();
+            let carreira = this.RecebeDados();
+            this.ExibeDados(carreira);
+            console.log(carreira);
+        }
+        this.LimpaCampos();
+        document.querySelector("#aprender").focus();
     }
-    document.querySelector("#resArea").style.color = "gold";
-    document.querySelector("#resLinguagem").style.color = "gold";
-    document.querySelector("#resFoco").style.color = "gold";
+
 }
 
-function Adicionar(){
-    if(aprender.value==""){
-        error.innerText= "Preencha o campo!"
-    }
-    else{
-        let novaLinguagem = document.createElement("li");
-        novaLinguagem.innerText = aprender.value;
-        linguagensParaAprender.appendChild(novaLinguagem);
-        novaLinguagem.style.color = "gold"
-        aprender.value = "";
-        error.innerText= "";
-    }
-}
+const carreira = new Carreira(); // instanciando a classe
